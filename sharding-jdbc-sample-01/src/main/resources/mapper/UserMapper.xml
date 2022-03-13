@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.sample01.infrastructure.dal.mysql.mapper.UserMapper">
+
+    <resultMap type="com.example.sample01.infrastructure.dal.mysql.dataobject.UserDO" id="userMap">
+        <result property="id" column="id"/>
+        <result property="gmtCreate" column="gmt_create"/>
+        <result property="gmtModified" column="gmt_modified"/>
+        <result property="userName" column="user_name"/>
+        <result property="name" column="name"/>
+        <result property="idCardNo" column="id_card_no"/>
+        <result property="mobile" column="mobile"/>
+        <result property="email" column="email"/>
+        <result property="status" column="status"/>
+        <result property="deleted" column="is_deleted"/>
+     </resultMap>
+
+
+    <select id="findById"  resultMap="userMap">
+        select * from user where id = #{id}
+    </select>
+
+    <select id="listByIds"  resultMap="userMap">
+        select * from user where id in
+        <foreach collection="ids" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+
+
+
+</mapper>
+
