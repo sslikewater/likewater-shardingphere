@@ -45,7 +45,6 @@ class UserServiceTest {
         UserDO userDO = userService.getById(1L);
         Assertions.assertTrue(userDO.getId()==1L);
         System.out.println(userDO.toString());
-
     }
 
     @Test
