@@ -36,4 +36,9 @@ public  class UserServiceImpl implements UserService {
     public int createUser(UserDO userDO) {
         return userMapper.insert(userDO);
     }
+
+    @Override
+    public List<UserDO> listByIdRange(Long start, Long end) {
+        return userMapper.listByIdRange(start,end);
+    }
 }

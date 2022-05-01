@@ -19,4 +19,6 @@ public interface UserMapper extends BaseMapper<UserDO> {
     List<UserDO> listByIds(@Param("ids") List<Long> ids);
 
 
+    List<UserDO> listByIdRange(@Param("start") Long start,@Param("end")  Long end);
+
 }

@@ -1,10 +1,13 @@
+
 server:
-  port: 8080
+  port: 8081
 mybatis:
   mapper-locations: classpath:/mapper/*.xml
 #  type:
 #    aliases-package: com.likewater.mall.user.infrastructure.dal.mysql.dataobject
 spring:
+  application:
+    name: sharding-standard-strategy-example
   shardingsphere:
     props: #是否打印解析的sql
       sql.show: true
@@ -35,16 +38,13 @@ spring:
         user: #逻辑表名
           actual-data-nodes: db${0..1}.user_${0..3}
           database-strategy: #分库策略
-            inline:
-              sharding-column: id
-              algorithm-expression: db${id % 2}
+            standard: #标识是标准分片策略
+              sharding-column: id  #分片键
+              precise-algorithm-class-name: com.example.sharding.standard.infrastructure.config.UserPreciseAlgorithmForDB #精确分片算法类名称，用于=和IN。
+              range-algorithm-class-name: com.example.sharding.standard.infrastructure.config.UserRangeAlgorithmForDB #范围分片算法类名称，用于范围查询。
+
           table-strategy: #分表策略
-            inline:
-              sharding-column: id
-              algorithm-expression: user_${id % 4}
-          keyGenerator: #自动生成分布式ID配置  如果不配置开发自己生成
-            type: SNOWFLAKE
-            column: id
-            props:
-              worker:
-                id: 1
+            standard: #标识是标准分片策略
+              sharding-column: id #分片键
+              precise-algorithm-class-name: com.example.sharding.standard.infrastructure.config.UserPreciseAlgorithmForTable #精确分片算法类名称，用于=和IN。
+              range-algorithm-class-name: com.example.sharding.standard.infrastructure.config.UserRangeAlgorithmForTable #范围分片算法类名称，用于范围查询。

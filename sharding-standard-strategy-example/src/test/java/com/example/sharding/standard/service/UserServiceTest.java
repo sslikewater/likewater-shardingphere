@@ -1,8 +1,9 @@
-package com.example.kafkasample01.service;
+package com.example.sharding.standard.service;
 
-import com.example.sample01.Application;
-import com.example.sample01.infrastructure.dal.mysql.dataobject.UserDO;
-import com.example.sample01.service.UserService;
+
+
+import com.example.sharding.standard.ShardingStandardStrategyExampleApplication;
+import com.example.sharding.standard.infrastructure.dal.mysql.dataobject.UserDO;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -15,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@SpringBootTest(classes = Application.class)
+@SpringBootTest(classes = ShardingStandardStrategyExampleApplication.class)
 class UserServiceTest {
     @Autowired
     UserService userService;
@@ -26,7 +27,9 @@ class UserServiceTest {
     @Rollback(true)
     void testGetById() {
         //插入一条id = 1的user
+        Long id = 7L;
         UserDO ud = new UserDO();
+        ud.setId(id);
         ud.setDeleted(0);
         ud.setEmail("cc1@qq.com");
         ud.setGmtCreate(new Date());
@@ -40,9 +43,30 @@ class UserServiceTest {
         userService.createUser(ud);
 
         //根据id查询
-//        UserDO userDO = userService.getById(1L);
-//        Assertions.assertTrue(userDO.getId()==1L);
-//        System.out.println(userDO.toString());
+        UserDO userDO = userService.getById(id);
+        Assertions.assertTrue(userDO.getId()==id);
+        System.out.println(userDO.toString());
+    }
+
+    @Test
+    @Transactional
+    @Rollback(true)
+    void testGetByIdsx() {
+
+
+        List<Long> ids = new ArrayList<>();
+        ids.add(1L);
+        ids.add(2L);
+
+        List<UserDO> userList = userService.listByIds(ids);
+    }
+
+    @Test
+    @Transactional
+    @Rollback(true)
+    void testGetByIdsUpperLower() {
+
+        List<UserDO> userList = userService.listByIdsGtOrLt(10L,100L);
     }
 
 
@@ -50,7 +74,7 @@ class UserServiceTest {
     @Transactional
     @Rollback(true)
     void testGetByIdRange() {
-        List<UserDO> list = userService.listByIdRange(1L,3L);
+        List<UserDO> list = userService.listByIdRange(2L,9L);
     }
 
 

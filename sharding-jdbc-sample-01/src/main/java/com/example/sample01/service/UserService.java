@@ -16,4 +16,7 @@ public interface UserService {
 
     int createUser(UserDO userDO);
 
+
+    List<UserDO> listByIdRange(Long start,Long end);
+
 }

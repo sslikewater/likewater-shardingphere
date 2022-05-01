@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.sample01.infrastructure.dal.mysql.mapper.UserMapper">
+<mapper namespace="com.example.sharding.standard.infrastructure.dal.mysql.mapper.UserMapper">
 
-    <resultMap type="com.example.sample01.infrastructure.dal.mysql.dataobject.UserDO" id="userMap">
+    <resultMap type="com.example.sharding.standard.infrastructure.dal.mysql.dataobject.UserDO" id="userMap">
         <result property="id" column="id"/>
         <result property="gmtCreate" column="gmt_create"/>
         <result property="gmtModified" column="gmt_modified"/>
@@ -31,10 +31,20 @@
 
 
     <select id="listByIdRange"  resultMap="userMap">
-        select * from user where id BETWEEN #{start} AND #{end}
+        select * from user where id BETWEEN #{lower} AND #{upper}
     </select>
 
+    <select id="listByIdsGtOrLt"  resultMap="userMap">
+        select * from user where id &lt; #{lower} or  id &gt; #{upper}
+    </select>
 
+    <select id="listByIdsGreaterThan"  resultMap="userMap">
+        select * from user where id &lt; #{value}
+    </select>
+
+    <select id="listByIdsLessThan"  resultMap="userMap">
+        select * from user where id &lt; #{value}
+    </select>
 
 
 
