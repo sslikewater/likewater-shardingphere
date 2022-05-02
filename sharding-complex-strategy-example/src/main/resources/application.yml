@@ -1,0 +1,44 @@
+server:
+  port: 8082
+mybatis:
+  mapper-locations: classpath:/mapper/*.xml
+#  type:
+#    aliases-package: com.likewater.mall.user.infrastructure.dal.mysql.dataobject
+spring:
+  shardingsphere:
+    props: #是否打印解析的sql
+      sql.show: true
+    datasource:
+      names: db0,db1 #不能使用下划线
+      db0:
+        type: com.zaxxer.hikari.HikariDataSource
+        jdbc-url: jdbc:mysql://localhost:3306/order0?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true
+        username: root
+        password: 123456
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        minimum-idle: 5       #连接池最小连接数
+        maximum-pool-size: 50   #连接池最大连接数
+        connection-timeout: 60000
+        connection-test-query: SELECT 1
+      db1:
+        type: com.zaxxer.hikari.HikariDataSource
+        jdbc-url: jdbc:mysql://localhost:3306/order1?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true
+        username: root
+        password: 123456
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        minimum-idle: 5       #连接池最小连接数
+        maximum-pool-size: 50   #连接池最大连接数
+        connection-timeout: 60000
+        connection-test-query: SELECT 1
+    sharding:
+      tables:
+        t_order: #
+          actual-data-nodes: db${0..1}.order_${0..3}
+          database-strategy: #
+            complex:
+              sharding-columns: id
+              algorithm-class-name: com.example.sharding.complex.infrastructure.config.OrderComplexShardingAlgorithm
+          table-strategy:
+            complex:
+              sharding-columns: id
+              algorithm-class-name: com.example.sharding.complex.infrastructure.config.OrderComplexShardingAlgorithm
