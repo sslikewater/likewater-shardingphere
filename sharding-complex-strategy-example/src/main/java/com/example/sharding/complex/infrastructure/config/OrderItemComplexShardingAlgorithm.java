@@ -20,13 +20,13 @@ import java.util.stream.Collectors;
  * @Description:
  * @Date: Create in 9:37 上午 2022/3/13
  */
-public class OrderComplexShardingAlgorithm implements ComplexKeysShardingAlgorithm {
+public class OrderItemComplexShardingAlgorithm implements ComplexKeysShardingAlgorithm {
     //分片位的位数
     public static int SPLICE_SIZE = 4;
     final Splitter splitter = Splitter.on(",").trimResults().omitEmptyStrings();
 
     //该表支持的分片键
-    public static final Set<String> shardingSliceKeys = new ImmutableSet.Builder<String>() .add("id").add("user_id").build();
+    public static final Set<String> shardingSliceKeys = new ImmutableSet.Builder<String>() .add("id").add("user_id").add("order_id") .build();
 
     /**
      * Sharding.

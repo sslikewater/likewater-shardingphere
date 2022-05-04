@@ -1,9 +1,9 @@
-create database order0;
-create database order1;
+create database if not exists order0;
+create database if not exists order1;
 
 use order0;
 
-CREATE TABLE `order_0` (
+CREATE TABLE if not exists `t_order_0` (
  `id` bigint NOT NULL,
  `pay_time` datetime comment '支付时间',
  `ship_time` datetime comment '发货时间',
@@ -27,7 +27,7 @@ CREATE TABLE `order_0` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-CREATE TABLE `order_1` (
+CREATE TABLE if not exists `t_order_1` (
  `id` bigint NOT NULL,
  `pay_time` datetime comment '支付时间',
  `ship_time` datetime comment '发货时间',
@@ -51,7 +51,7 @@ CREATE TABLE `order_1` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-CREATE TABLE `order_2` (
+CREATE TABLE if not exists `t_order_2` (
  `id` bigint NOT NULL,
  `pay_time` datetime comment '支付时间',
  `ship_time` datetime comment '发货时间',
@@ -74,7 +74,7 @@ CREATE TABLE `order_2` (
  INDEX `idx_store_id`(`store_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `order_3` (
+CREATE TABLE if not exists `t_order_3` (
 `id` bigint NOT NULL,
 `pay_time` datetime comment '支付时间',
 `ship_time` datetime comment '发货时间',
@@ -100,7 +100,7 @@ INDEX `idx_store_id`(`store_id`) USING BTREE
 
 use order1;
 
-CREATE TABLE `order_0` (
+CREATE TABLE if not exists `t_order_0` (
 `id` bigint NOT NULL,
 `pay_time` datetime comment '支付时间',
 `ship_time` datetime comment '发货时间',
@@ -124,7 +124,7 @@ INDEX `idx_store_id`(`store_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-CREATE TABLE `order_1` (
+CREATE TABLE if not exists `t_order_1` (
 `id` bigint NOT NULL,
 `pay_time` datetime comment '支付时间',
 `ship_time` datetime comment '发货时间',
@@ -148,7 +148,7 @@ INDEX `idx_store_id`(`store_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-CREATE TABLE `order_2` (
+CREATE TABLE if not exists `t_order_2` (
 `id` bigint NOT NULL,
 `pay_time` datetime comment '支付时间',
 `ship_time` datetime comment '发货时间',
@@ -171,7 +171,7 @@ INDEX `idx_seller_id`(`seller_id`) USING BTREE,
 INDEX `idx_store_id`(`store_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `order_3` (
+CREATE TABLE if not exists `t_order_3` (
 `id` bigint NOT NULL,
 `pay_time` datetime comment '支付时间',
 `ship_time` datetime comment '发货时间',

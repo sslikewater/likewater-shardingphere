@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.sharding.complex.infrastructure.dal.mysql.mapper.OrderItemMapper">
+    <resultMap type="com.example.sharding.complex.infrastructure.dal.mysql.dataobject.OrderItemDO" id="orderMap">
+        <result property="id" column="id"/>
+        <result property="gmtCreate" column="gmt_create"/>
+        <result property="gmtModified" column="gmt_modified"/>
+        <result property="orderId" column="order_id"/>
+        <result property="productId" column="product_id"/>
+        <result property="skuId" column="sku_id"/>
+        <result property="price" column="price"/>
+        <result property="quantity" column="quantity"/>
+        <result property="totalAmount" column="total_amount"/>
+        <result property="discountAmount" column="discount_amount"/>
+        <result property="deleted" column="is_deleted"/>
+     </resultMap>
+    <select id="findById"  resultMap="orderMap">
+        select * from t_order_item where id= #{id}
+    </select>
+    <select id="getByUserId"  resultMap="orderMap">
+        select * from t_order_item where user_id = #{userId}
+    </select>
+</mapper>
