@@ -4,6 +4,9 @@ package com.example.sharding.complex.service;
 import com.example.sharding.complex.ShardingComplexStrategyExampleApplication;
 import com.example.sharding.complex.service.dto.OrderCreateDTO;
 import com.example.sharding.complex.service.dto.OrderDTO;
+import com.sankuai.inf.leaf.common.Result;
+import com.sankuai.inf.leaf.common.Status;
+import com.sankuai.inf.leaf.service.SegmentService;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -17,6 +20,9 @@ class OrderServiceTest {
     @Autowired
     OrderService orderService;
 
+    @Autowired
+    private  SegmentService segmentService;
+
 
     @Test
     @Transactional
@@ -25,13 +31,13 @@ class OrderServiceTest {
 
         //插入一条id = 1的user
         OrderCreateDTO dto = new OrderCreateDTO();
-        dto.setUserId(1L);
+        dto.setUserId(10001L);
         dto.setDeliveryAmount(1000L);
-        dto.setSellerId(1L);
-        dto.setStoreId(1L);
+        dto.setSellerId(10001L);
+        dto.setStoreId(10001L);
         dto.setTotalAmount(10000L);
         dto.setTotalItemsAmount(10000L);
-
+        dto.setDeliveryAddress("深圳");
 
 
         long id = orderService.placeOrder(dto);
@@ -57,6 +63,15 @@ class OrderServiceTest {
 
     }
 
+    @Test
+    void testSegment(){
+        for(int i=0;i<10;i++) {
+            Result res = segmentService.getId("t_order");
+            if(res.getStatus().equals(Status.SUCCESS)) {
+                System.out.println("distri id:" +res.getId());
+            }
+        }
+    }
 
 
 }

@@ -26,7 +26,7 @@ public class OrderDO {
     private Long discountAmount;
     private Long deliveryAmount;
     private Long totalAmount;
-    private Long deliveryAddressId;
+    private String deliveryAddress;
     private Integer status;
     private Date gmtCreate;
     private Date gmtModified;
@@ -122,12 +122,12 @@ public class OrderDO {
         this.totalAmount = totalAmount;
     }
 
-    public Long getDeliveryAddressId() {
-        return deliveryAddressId;
+    public String getDeliveryAddress() {
+        return deliveryAddress;
     }
 
-    public void setDeliveryAddressId(Long deliveryAddressId) {
-        this.deliveryAddressId = deliveryAddressId;
+    public void setDeliveryAddress(String deliveryAddress) {
+        this.deliveryAddress = deliveryAddress;
     }
 
     public Integer getStatus() {

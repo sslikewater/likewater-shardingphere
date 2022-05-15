@@ -15,7 +15,7 @@
         <result property="discountAmount" column="discount_amount"/>
         <result property="deliveryAmount" column="delivery_amount"/>
         <result property="totalAmount" column="total_amount"/>
-        <result property="deliveryAddressId" column="delivery_address_id"/>
+        <result property="deliveryAddress" column="delivery_address"/>
         <result property="status" column="status"/>
         <result property="gmtCreate" column="gmt_create"/>
         <result property="gmtModified" column="gmt_modified"/>

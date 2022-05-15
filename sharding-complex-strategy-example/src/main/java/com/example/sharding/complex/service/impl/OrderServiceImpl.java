@@ -3,8 +3,9 @@ package com.example.sharding.complex.service.impl;
 
 import com.example.sharding.complex.infrastructure.dal.mysql.dataobject.OrderDO;
 import com.example.sharding.complex.infrastructure.dal.mysql.mapper.OrderMapper;
-import com.example.sharding.complex.infrastructure.utils.PrimaryKeyUtil;
+import com.example.sharding.complex.infrastructure.utils.PrimaryKeyService;
 import com.example.sharding.complex.service.OrderService;
+import com.example.sharding.complex.service.constants.BizTags;
 import com.example.sharding.complex.service.convert.OrderConvertor;
 import com.example.sharding.complex.service.dto.OrderCreateDTO;
 import com.example.sharding.complex.service.dto.OrderDTO;
@@ -26,6 +27,8 @@ public  class OrderServiceImpl implements OrderService {
     @Autowired
     OrderMapper orderMapper;
 
+    @Autowired
+    PrimaryKeyService primaryKeyService;
 
     @Override
     public OrderDTO getOrder(Long id) {
@@ -44,11 +47,12 @@ public  class OrderServiceImpl implements OrderService {
         //生成主键id  PrimaryKeyUtil内部调用美团号段生成分布式ID+四位随机分片位
         long userId = orderDTO.getUserId();
         //取买家id的分片位（后四位）
-        Long id = PrimaryKeyUtil.get(slice);
+        long slice = userId%10000;
+        Long id = primaryKeyService.get(BizTags.ORDER,slice);
 
 
         OrderDO orderDO = new OrderDO();
-        orderDO.setDeliveryAddressId(orderDTO.getDeliveryAddressId());
+        orderDO.setDeliveryAddress(orderDTO.getDeliveryAddress());
         orderDO.setDeliveryAmount(orderDTO.getDeliveryAmount());
         orderDO.setId(id);
         orderDO.setSellerId(orderDTO.getSellerId());
@@ -57,17 +61,15 @@ public  class OrderServiceImpl implements OrderService {
         orderDO.setTotalItemsAmount(orderDTO.getTotalItemsAmount());
         orderDO.setUserId(orderDTO.getUserId());
         orderDO.setGmtCreate(new Date());
+        orderDO.setStatus(1);
         //默认不删除记录
         orderDO.setDeleted(0);
-//        int result =  orderMapper.insert(orderDO);
-//        if(result == 1){
-//            return id;
-//        }
-//        else {
-//            return -1;
-//        }
-
-        return 1;
-
+        int result =  orderMapper.insert(orderDO);
+        if(result == 1){
+            return id;
+        }
+        else {
+            return -1;
+        }
     }
 }

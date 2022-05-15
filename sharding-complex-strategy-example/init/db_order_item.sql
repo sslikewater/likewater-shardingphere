@@ -3,7 +3,7 @@ create database if not exists  order1;
 
 use order0;
 
-CREATE TABLE if not exists `order_item_0` (
+CREATE TABLE if not exists `t_order_item_0` (
   `id` bigint NOT NULL,
   `order_id` bigint not null,
   `product_id` bigint not null,
@@ -21,7 +21,7 @@ CREATE TABLE if not exists `order_item_0` (
   INDEX `idx_order_id`(`order_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE if not exists `order_item_1` (
+CREATE TABLE if not exists `t_order_item_1` (
   `id` bigint NOT NULL,
   `order_id` bigint not null,
   `product_id` bigint not null,
@@ -39,7 +39,7 @@ CREATE TABLE if not exists `order_item_1` (
   INDEX `idx_order_id`(`order_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE if not exists `order_item_2` (
+CREATE TABLE if not exists `t_order_item_2` (
   `id` bigint NOT NULL,
   `order_id` bigint not null,
   `product_id` bigint not null,
@@ -57,7 +57,7 @@ CREATE TABLE if not exists `order_item_2` (
   INDEX `idx_order_id`(`order_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE if not exists `order_item_3` (
+CREATE TABLE if not exists `t_order_item_3` (
   `id` bigint NOT NULL,
   `order_id` bigint not null,
   `product_id` bigint not null,
@@ -77,7 +77,7 @@ CREATE TABLE if not exists `order_item_3` (
 
 use order1;
 
-CREATE TABLE if not exists `order_item_0` (
+CREATE TABLE if not exists `t_order_item_0` (
   `id` bigint NOT NULL,
   `order_id` bigint not null,
   `product_id` bigint not null,
@@ -95,7 +95,7 @@ CREATE TABLE if not exists `order_item_0` (
   INDEX `idx_order_id`(`order_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE if not exists `order_item_1` (
+CREATE TABLE if not exists `t_order_item_1` (
   `id` bigint NOT NULL,
   `order_id` bigint not null,
   `product_id` bigint not null,
@@ -113,7 +113,7 @@ CREATE TABLE if not exists `order_item_1` (
   INDEX `idx_order_id`(`order_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE if not exists `order_item_2` (
+CREATE TABLE if not exists `t_order_item_2` (
   `id` bigint NOT NULL,
   `order_id` bigint not null,
   `product_id` bigint not null,
@@ -131,7 +131,7 @@ CREATE TABLE if not exists `order_item_2` (
   INDEX `idx_order_id`(`order_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE if not exists `order_item_3` (
+CREATE TABLE if not exists `t_order_item_3` (
   `id` bigint NOT NULL,
   `order_id` bigint not null,
   `product_id` bigint not null,
