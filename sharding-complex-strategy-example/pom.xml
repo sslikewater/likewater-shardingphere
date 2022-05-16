@@ -23,6 +23,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!-- leaf 客户端-->
+        <dependency>
             <artifactId>leaf-boot-starter</artifactId>
             <exclusions>
                 <exclusion>
@@ -33,10 +38,8 @@
             <groupId>com.sankuai.inf.leaf</groupId>
             <version>1.0.1-RELEASE</version>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
+
+        <!-- shardingsphere -->
         <dependency>
             <groupId>org.apache.shardingsphere</groupId>
             <artifactId>sharding-jdbc-spring-namespace</artifactId>
@@ -53,6 +56,7 @@
 <!--                    <version>2.2.0</version>-->
 <!--                </dependency>-->
 
+        <!--mysql插件baomidou-->
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>

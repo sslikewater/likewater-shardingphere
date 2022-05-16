@@ -36,7 +36,7 @@ spring:
           actual-data-nodes: db${0..1}.t_order_${0..3}
           database-strategy: #
             complex:
-              sharding-columns: id,user_id
+              sharding-columns: id,user_id #如果多个分片键，用','分割
               algorithm-class-name: com.example.sharding.complex.infrastructure.config.OrderComplexShardingAlgorithm
           table-strategy:
             complex:
@@ -52,3 +52,4 @@ spring:
             complex:
               sharding-columns: id,user_id,order_id
               algorithm-class-name: com.example.sharding.complex.infrastructure.config.OrderItemComplexShardingAlgorithm
+        binding-tables[0]: t_order,t_order_item

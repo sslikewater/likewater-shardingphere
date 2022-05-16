@@ -44,10 +44,12 @@ public  class OrderServiceImpl implements OrderService {
     @Override
     public long placeOrder(OrderCreateDTO orderDTO) {
 
-        //生成主键id  PrimaryKeyUtil内部调用美团号段生成分布式ID+四位随机分片位
         long userId = orderDTO.getUserId();
         //取买家id的分片位（后四位）
         long slice = userId%10000;
+
+
+        //生成主键id  美团号段生成分布式ID+买家分片位
         Long id = primaryKeyService.get(BizTags.ORDER,slice);
 
 

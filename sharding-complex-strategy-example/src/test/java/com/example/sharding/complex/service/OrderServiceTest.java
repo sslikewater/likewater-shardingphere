@@ -28,10 +28,8 @@ class OrderServiceTest {
     @Transactional
     @Rollback(true)
     void testPlaceOrder() {
-
-        //插入一条id = 1的user
         OrderCreateDTO dto = new OrderCreateDTO();
-        dto.setUserId(10001L);
+        dto.setUserId(10001L);//后四位为分片位
         dto.setDeliveryAmount(1000L);
         dto.setSellerId(10001L);
         dto.setStoreId(10001L);

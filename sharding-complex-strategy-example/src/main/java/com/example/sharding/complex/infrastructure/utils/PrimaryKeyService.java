@@ -52,17 +52,11 @@ public  class PrimaryKeyService {
          Result res = segmentService.getId(bizTag); //从美团的号段获取
          if(res.getStatus().equals(Status.SUCCESS)){
              long distributeId = res.getId();
-
-             System.out.println("distributeId="+distributeId);
-
              distributeId = distributeId * 10000;
              return distributeId + slice;
          }
          else {
              throw new LeafSegmentException(res.toString());
          }
-
-
-
     }
 }
